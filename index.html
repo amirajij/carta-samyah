@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para a minha Samyah ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .envelope {
+      width: 300px;
+      height: 200px;
+      background: #fff0f5;
+      border: 2px solid #ff6f91;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      text-align: center;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent; /* remove highlight no telemóvel */
+    }
+
+    .envelope:active {
+      transform: scale(0.97);
+    }
+
+    .envelope h1 {
+      font-size: 1.5rem;
+      color: #ff4d84;
+      margin: 0;
+    }
+
+    .card {
+      display: none;
+      max-width: 90%;
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      text-align: left;
+      line-height: 1.6;
+      white-space: pre-line;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #final {
+      display: none;
+      margin-top: 15px;
+      font-size: 1.3rem;
+      text-align: center;
+      color: #ff4d84;
+      animation: pop 0.6s ease forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Envelope inicial -->
+  <div class="envelope" id="envelope">
+    <h1>💌 Toca para abrir</h1>
+  </div>
+
+  <!-- Carta -->
+  <div class="card" id="carta">
+    <h1>Samyah ❤️</h1>
+    <p id="mensagem"></p>
+    <div id="final">❤️ Amo-te muitoo ❤️</div>
+  </div>
+
+  <script>
+    const texto = `Samyah, resolvi escrever-te este texto porque já faz um tempinho que não faço um, e sei bem o quanto tu gostas. Então estou aqui, à espera que vás dormir, O QUE ESTÁ A DEMORAR BUÉ POSSA, quando penso que dormiu afinal ta ai acordadinha.
+
+Enfim, sinto-me até meio culpado por não ter feito isto mais cedo, mas pronto… mais vale agora do que nunca. Só queria dizer-te que te admiro muito e ainda fico surpreendido como é que me conseguiste aturar durante estes 3 anos, com todas as minhas maluquices e pancadas. Quanto mais penso nisso, mais apaixonado fico, porque nunca desististe de mim e ouve, acho que ate eu não me aturava.
+
+Sou mesmo feliz por te ter conhecido. Se não fosse para moz provavelmente nunca íamos cruzar-nos ahahah, e olha que eu nem queria ir a essa viagem, zero vontade mesmo. Mas foi das melhores sortes da minha vida.
+
+E olha, vou ser sincero e já te disse várias vezes, sinto que não estou a fazer o suficiente por ti e acho que até tu sentes isso. Um dia precisamos de falar e preciso de entender onde posso melhorar e o que posso melhorar para ti, o que gostas que eu faça e o que não. Pode parecer estúpido, mas sinto mesmo que preciso de ser melhor contigo, porque mereces muito mais. E sim, tenho receio que um dia possas perder o interesse… e se isso acontecer até vou entender, porque ia ser culpa minha. Mas pronto, já tou a transformar o texto em desabafo ahahaha.
+
+Nem sei se estou a escrever demais ou se já estás cheia de sono a ler isto se calhar até vais adormecer a meio ahaha.
+
+Só espero que continuemos juntos por muito tempo na verdade, quero para sempre mesmo, In Sh Allah.
+
+Acabei de reler este texto umas 5xs, e acho que isto está muito cringe, I TRIED DESSA VEZ SOLTEI MM. n goza pls.`;
+
+    const envelope = document.getElementById("envelope");
+    const carta = document.getElementById("carta");
+    const mensagem = document.getElementById("mensagem");
+    const final = document.getElementById("final");
+
+    function abrirCarta() {
+      envelope.style.display = "none";
+      carta.style.display = "block";
+      escreverTexto(texto);
+    }
+
+    // Usar pointerdown (funciona em rato + toque)
+    envelope.addEventListener("pointerdown", abrirCarta, { once: true });
+
+    function escreverTexto(texto) {
+      let i = 0;
+      mensagem.textContent = "";
+      const intervalo = setInterval(() => {
+        mensagem.textContent += texto[i];
+        i++;
+        if (i === texto.length) {
+          clearInterval(intervalo);
+          setTimeout(() => final.style.display = "block", 500);
+        }
+      }, 35);
+    }
+  </script>
+</body>
+</html>
